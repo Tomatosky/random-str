@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="static/style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>随机字符生成</title>
+    <script>
+        $(document).ready(function () {
+            var chars_0 = 'abcdefhijkmnprstwxyz';
+            var chars_1 = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+            var maxPos_0 = chars_0.length;
+            var maxPos_1 = chars_1.length;
+            generate(chars_0, maxPos_0, 'user', 6);
+            generate(chars_1, maxPos_1, 'psw', 16);
+
+            function generate(chars, maxPos, variety, len) {
+                var str = '';
+                for (var i = 0; i < len; i++) {
+                    str += chars.charAt(Math.floor(Math.random() * maxPos));
+                }
+                $("#" + variety).val(str);
+            }
+        });
+
+        function copy(variety) {
+            $("#" + variety).select();
+            document.execCommand("Copy");
+        }
+    </script>
+</head>
+<body>
+<div class="headbar"></div>
+<div class="container container-bg-color">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <blockquote>
+                <p class="title">
+                    <a href="">随机字符生成</a>
+                </p>
+            </blockquote>
+            <br>
+            <div class="ramdom_str">
+                <label><input type="text" id="user"/></label>
+                <button id="b_user" class="btn btn-success btn-default" onclick="copy('user')">点击复制文本框内的内容</button>
+            </div>
+            <div class="ramdom_str">
+                <label><input type="text" id="psw"/></label>
+                <button id="b_psw" class="btn btn-success btn-default" onclick="copy('psw')">点击复制文本框内的内容</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
